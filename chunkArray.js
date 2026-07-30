@@ -10,6 +10,8 @@ function chunkArray(array, size) {
     // Slice the array from the current index to index + size
     result.push(array.slice(index, index + size));
     // Increment the index by size to move to the next chunk
+    //slice()method doesnt throw error if the end index is out of bounds
+    //it just returns the elements that are available
     index = index + size;
   }
   return result;

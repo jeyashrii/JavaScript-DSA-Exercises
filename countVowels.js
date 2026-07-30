@@ -1,4 +1,4 @@
-// ---Direcions
+// ---Directions
 // --write a program that returns the number of vowels in a given String
 // ---example
 // ---'HI THERE"-3
@@ -8,6 +8,10 @@
 // function countVowels(str) {
 //   const matches = str.match(/[aeiou]/gi);
 //   return matches ? matches.length : 0;
+// or
+// const matches=str.match(/[aeiou]/gi) ||0;
+// return matches.length;
+// match returns array of matches (character that are in th pattern which matches the string)g-global flag, i-case insensitive.if no matches found it returns null
 // }
 
 // console.log(countVowels("CODING MONEY"));
@@ -24,3 +28,6 @@ function countVowels(str) {
   return count;
 }
 console.log(countVowels("HI THERE"));
+
+let str = "jeyashru";
+console.log(str[0]);
