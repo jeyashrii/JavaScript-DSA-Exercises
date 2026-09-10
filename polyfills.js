@@ -45,7 +45,8 @@
 //     return a + i;
 //   }, 3)
 // );
-
+//call , apply , bind are methoids used to explicily set this context of a function . we can execute a function on behalf aof an object the function natively doesnt belong to.
+//its basically function borrowing.
 //call-----------------------------------------------------------------------------------------------------------------
 Function.prototype.myCall = function (context, ...args) {
   //we get all args as an array called args --rest
@@ -93,6 +94,14 @@ Function.prototype.myBind = function (context, ...args) {
     return tempFunction.apply(context, [...args, ...newArgs]);
   };
 };
+//Here you're already using the built-in apply(), which itself sets this to context. So there's no need to manually attach the function to the object.
+
+Function.prototype.myBind = function (context, ...args) {
+  context.tempFun = this;
+  return function (...newArgs) {
+    return context.tempFun(...args, ...newArgs);
+  };
+};
 const printMyName = printName.bind(name, "chennai", "tamil nadu");
 printMyName();
 
@@ -133,3 +142,17 @@ printName.call(name, "chn", "ind");
 // ↓
 
 // Execute later using apply()
+Function.prototype.myBind = function (context, ...args) {
+  context.tempFun = this;
+
+  return function (...newArgs) {
+    return context.tempFun(...args, ...newArgs);
+  };
+};
+function fn1() {
+  console.log("fn1");
+}
+
+const obj = {};
+
+const b1 = fn1.myBind(obj);
